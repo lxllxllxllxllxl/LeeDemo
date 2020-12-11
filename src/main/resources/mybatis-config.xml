@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <plugins>
+        <!-- mybatis写出sql记录控件(拦截器) -->
+        <!-- 自己写的那个拦截器 -->
+        <plugin interceptor="com.config.PageInterceptor">
+            <!-- 方言 -->
+            <property name="dialect" value="mysql"/>
+        </plugin>
+
+    </plugins>
+
+    <!-- 映射Sql.xml文件 -->
+    <mappers>
+        <mapper resource="com/mapper/lee/QuestionMapper.xml" />
+    </mappers>
+
+</configuration>

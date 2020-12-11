@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lee.mapper.QuestionMapper">
+
+    <select id="queryList" resultType="com.lee.vo.QuestionVO">
+        SELECT
+            q.id,
+            q.content,
+            q.type,
+            q.answer
+        FROM
+            question q
+        <where>
+            <if test="param.type!=null and param.type!=''">
+                q.type = #{param.type}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryListCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM
+        (SELECT
+        q.id,
+        q.content,
+        q.type,
+        q.answer
+        FROM
+        question q
+        <where>
+            <if test="param.type!=null and param.type!=''">
+                q.type = #{param.type}
+            </if>
+        </where>
+        ) t
+    </select>
+
+    <select id="queryItemsByQuestionId" resultType="com.lee.vo.ItemVO">
+        SELECT
+        i.id,
+        i.label,
+        i.question_id,
+        i.content
+        FROM
+        item i
+        <where>
+            <if test="questionId!=null and questionId!=''">
+                i.question_id = #{questionId}
+            </if>
+        </where>
+    </select>
+</mapper>
